@@ -1,1 +1,21 @@
 #+Title: CLI tool to control Kikusui power supply
+
+* Howto
+
+  #+begin_example
+  pipenv shell
+  pipenv install
+  ./kikusui.py --ipaddr 192.168.11.101 id
+  #+end_example
+
+* Configuration
+
+  configuration file resides in =$HOME/.config/kikusui/config.yml= or =$XDG_CONFIG_HOME/kikusui/config.yml=.
+
+** IP Address
+   If you have IP address specified in config.yml, you don't need
+   =--ipaddr= option when you invoke the command.
+
+   #+begin_src yaml
+     ip: 192.168.11.101
+   #+end_src
