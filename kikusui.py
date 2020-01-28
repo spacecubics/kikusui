@@ -63,8 +63,12 @@ def id(ctx):
 
 @click.command()
 @click.pass_context
-def voltage(ctx):
-    click.echo('%s' % ctx.obj['inst'].query('MEAS:VOLT?'))
+@click.option('-s', '--set', type=float)
+def voltage(ctx, set):
+    if set:
+        ctx.obj['inst'].write(f'VOLT {set}')
+    else:
+        click.echo('%s' % ctx.obj['inst'].query('MEAS:VOLT?'))
 
 
 @click.command()
