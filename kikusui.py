@@ -47,7 +47,21 @@ def id(ctx):
     click.echo('%s' % ctx.obj['inst'].query('*IDN?'))
 
 
+@click.command()
+@click.pass_context
+def voltage(ctx):
+    click.echo('%s' % ctx.obj['inst'].query('MEAS:VOLT?'))
+
+
+@click.command()
+@click.pass_context
+def current(ctx):
+    click.echo('%s' % ctx.obj['inst'].query('MEAS:VOLT?'))
+
+
 cli.add_command(id)
+cli.add_command(voltage)
+cli.add_command(current)
 
 if __name__ == '__main__':
     cli(obj={})
