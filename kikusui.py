@@ -87,10 +87,32 @@ def output(ctx, set):
         click.echo('%s' % ctx.obj['inst'].query('OUTP?'))
 
 
+@click.command()
+@click.pass_context
+@click.option('-s', '--set', type=float)
+def ovp(ctx, set):
+    if set:
+        ctx.obj['inst'].write(f'VOLT:PROT {set}')
+    else:
+        click.echo('%s' % float(ctx.obj['inst'].query('VOLT:PROT?')))
+
+
+@click.command()
+@click.pass_context
+@click.option('-s', '--set', type=float)
+def ocp(ctx, set):
+    if set:
+        ctx.obj['inst'].write(f'CURR:PROT {set}')
+    else:
+        click.echo('%s' % float(ctx.obj['inst'].query('CURR:PROT?')))
+
+
 cli.add_command(id)
 cli.add_command(voltage)
 cli.add_command(current)
 cli.add_command(output)
+cli.add_command(ovp)
+cli.add_command(ocp)
 
 if __name__ == '__main__':
     cli(obj={})
