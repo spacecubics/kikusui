@@ -73,9 +73,20 @@ def current(ctx):
     click.echo('%s' % ctx.obj['inst'].query('MEAS:VOLT?'))
 
 
+@click.command()
+@click.pass_context
+@click.option('-s', '--set', type=click.IntRange(0, 1))
+def output(ctx, set):
+    if set:
+        ctx.obj['inst'].write(f'OUTP {set}')
+    else:
+        click.echo('%s' % ctx.obj['inst'].query('OUTP?'))
+
+
 cli.add_command(id)
 cli.add_command(voltage)
 cli.add_command(current)
+cli.add_command(output)
 
 if __name__ == '__main__':
     cli(obj={})
