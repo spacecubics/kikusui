@@ -74,7 +74,7 @@ def voltage(ctx, set):
 @click.command()
 @click.pass_context
 def current(ctx):
-    click.echo('%s' % float(ctx.obj['inst'].query('MEAS:VOLT?')))
+    click.echo('%s' % float(ctx.obj['inst'].query('MEAS:CURR?')))
 
 
 @click.command()
