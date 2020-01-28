@@ -63,6 +63,21 @@ def id(ctx):
 
 @click.command()
 @click.pass_context
+def measure(ctx):
+    outp = ctx.obj['inst'].query('OUTP?')
+    mvolt = float(ctx.obj['inst'].query('MEAS:VOLT?'))
+    mcurr = float(ctx.obj['inst'].query('MEAS:CURR?'))
+    volt = float(ctx.obj['inst'].query('VOLT?'))
+    curr = float(ctx.obj['inst'].query('CURR?'))
+    ovp = float(ctx.obj['inst'].query('VOLT:PROT?'))
+    ocp = float(ctx.obj['inst'].query('CURR:PROT?'))
+    click.echo('out %s' % ('yes' if outp == '1' else 'no'))
+    click.echo(f'voltage {mvolt} V / {volt} V / {ovp} V')
+    click.echo(f'current {mcurr} A / {curr} A / {ocp} A')
+
+
+@click.command()
+@click.pass_context
 @click.option('-s', '--set', type=float)
 def voltage(ctx, set):
     if set:
@@ -108,6 +123,7 @@ def ocp(ctx, set):
 
 
 cli.add_command(id)
+cli.add_command(measure)
 cli.add_command(voltage)
 cli.add_command(current)
 cli.add_command(output)
