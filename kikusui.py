@@ -81,10 +81,10 @@ def current(ctx):
 @click.pass_context
 @click.option('-s', '--set', type=click.IntRange(0, 1))
 def output(ctx, set):
-    if set:
-        ctx.obj['inst'].write(f'OUTP {set}')
-    else:
+    if set == None:
         click.echo('%s' % ctx.obj['inst'].query('OUTP?'))
+    else:
+        ctx.obj['inst'].write(f'OUTP {set}')
 
 
 @click.command()
