@@ -9,6 +9,20 @@ import os
 APP_NAME = 'kikusui'
 
 
+class AliasedGroup(click.Group):
+    def get_command(self, ctx, cmd_name):
+        rv = click.Group.get_command(self, ctx, cmd_name)
+        if rv is not None:
+            return rv
+        matches = [x for x in self.list_commands(ctx)
+                   if x.startswith(cmd_name)]
+        if not matches:
+            return None
+        elif len(matches) == 1:
+            return click.Group.get_command(self, ctx, matches[0])
+        ctx.fail('Too many matches: %s' % ', '.join(sorted(matches)))
+
+
 def get_ipaddr_from_config():
     cfg_file = os.path.join(click.get_app_dir(APP_NAME), 'config.yml')
     try:
@@ -25,7 +39,7 @@ def get_ipaddr_from_config():
     return ipaddr
 
 
-@click.group()
+@click.command(cls=AliasedGroup)
 @click.option('--ipaddr', help='IP address to connect to.')
 @click.pass_context
 def cli(ctx, ipaddr):
