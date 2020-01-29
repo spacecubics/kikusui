@@ -39,7 +39,7 @@ def get_ipaddr_from_config():
     return ipaddr
 
 
-@click.command(cls=AliasedGroup)
+@click.command(cls=AliasedGroup, context_settings=dict(help_option_names=["-h", "--help"]))
 @click.option('--ipaddr', help='IP address to connect to.')
 @click.pass_context
 def cli(ctx, ipaddr):
