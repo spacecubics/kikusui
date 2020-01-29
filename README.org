@@ -1,6 +1,6 @@
 #+Title: CLI tool to control Kikusui power supply
 
-* Howto
+* Introduction
 
   #+begin_example
   pipenv shell
@@ -19,3 +19,11 @@
    #+begin_src yaml
      ip: 192.168.11.101
    #+end_src
+* Howto
+** Monitor voltage and current continuously
+
+   #+begin_example
+     watch ./kikusui.py measure
+   #+end_example
+
+   There is a python clone called =pywatch= if you are on non Linux system.
