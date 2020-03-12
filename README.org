@@ -3,9 +3,10 @@
 * Introduction
 
   #+begin_example
-  pipenv shell
-  pipenv install
-  ./kikusui.py --ipaddr 192.168.11.101 id
+    $ pipenv shell
+    $ pipenv install
+    $ ./kikusui.py --ipaddr 192.168.11.101 id
+    KIKUSUI,PMX35-3A,ZH000859,IFC01.52.0011 IOC01.10.0070
   #+end_example
 
 * Configuration
