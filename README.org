@@ -20,6 +20,49 @@
    #+begin_src yaml
      ip: 192.168.11.101
    #+end_src
+
+* Commands
+** Global Options
+   #+begin_example
+     $ ./kikusui.py --help
+     Usage: kikusui.py [OPTIONS] COMMAND [ARGS]...
+
+     Options:
+       --ipaddr TEXT  IP address to connect to.
+       -h, --help     Show this message and exit.
+
+     Commands:
+       current
+       id
+       measure
+       ocp
+       output
+       ovp
+       voltage
+   #+end_example
+
+** id
+   #+begin_example
+     $ ./kikusui.py id
+     KIKUSUI,PMX35-3A,ZH000859,IFC01.52.0011 IOC01.10.0070
+   #+end_example
+
+   The command `id` prints "Manufacturer", "Model", "Serial", "Firmware version".
+
+** measure
+   #+begin_example
+     $ ./kikusui.py measure
+     out no
+     voltage -0.001 V / 12.0 V / 25.0 V
+     current 0.0 A / 1.0 A / 3.3 A
+   #+end_example
+
+   The command `measure` prints the current settings and measured values.
+
+   - out :: Power output status. `yes` when power is on, `no` otherwise.
+   - voltage :: The voltages: measured / currently set / over voltage protection
+   - current :: The currents: measured / currently set / over current protection
+
 * Howto
 ** Monitor voltage and current continuously
 
