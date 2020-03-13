@@ -11,7 +11,16 @@
 
 * Configuration
 
-  configuration file resides in =$HOME/.config/kikusui/config.yml= or =$XDG_CONFIG_HOME/kikusui/config.yml=.
+  A configuration file is first searched in the current directory,
+  then searched in the application configuration directory if not
+  found.  This is because you might want to override your default
+  configuration with the one in the current directory.
+
+  The application configuration directory is OS dependent.
+
+    - For Linux :: =$XDG_CONFIG_HOME/kikusui/config.yml=.
+    - For Mac OS X :: =~/Library/Application Support/kikusui/config.yml=
+    - For Windows 10 :: =C:\Users\<user>\AppData\Local\kikusui\config.yml=
 
 ** IP Address
    If you have IP address specified in config.yml, you don't need

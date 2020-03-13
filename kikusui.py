@@ -24,19 +24,22 @@ class AliasedGroup(click.Group):
 
 
 def get_ipaddr_from_config():
-    cfg_file = os.path.join(click.get_app_dir(APP_NAME), 'config.yml')
-    try:
-        with click.open_file(cfg_file, 'r') as stream:
-            try:
-                cfg = safe_load(stream)
-                ipaddr = cfg['ip']
-            except yaml.YAMLError:
-                click.echo("Oops", err=True)
-    except FileNotFoundError:
-        click.echo(f"Create {cfg} and try again", err=True)
-        raise
+    cfg_dirs = [os.getcwd(), click.get_app_dir(APP_NAME)]
+    for cfg_dir in cfg_dirs:
+        cfg_file = os.path.join(cfg_dir, 'config.yml')
+        try:
+            with click.open_file(cfg_file, 'r') as stream:
+                try:
+                    cfg = safe_load(stream)
+                    ipaddr = cfg['ip']
+                    return ipaddr
+                except yaml.YAMLError:
+                    click.echo("Oops", err=True)
+        except FileNotFoundError:
+            continue
 
-    return ipaddr
+    dirs = ' or '.join(cfg_dirs)
+    raise Exception(f'"config.yml" not found in either {dirs}')
 
 
 @click.command(cls=AliasedGroup, context_settings=dict(help_option_names=["-h", "--help"]))
