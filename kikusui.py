@@ -2,7 +2,7 @@
 
 import click
 from yaml import safe_load
-import visa
+import pyvisa as visa
 import os
 
 
