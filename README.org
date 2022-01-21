@@ -72,6 +72,27 @@
    - voltage :: The voltages: measured / currently set / over voltage protection
    - current :: The currents: measured / currently set / over current protection
 
+
+** current
+   #+begin_example
+     $ ./kikusui.py current
+     $ ./kikusui.py current -t setting
+     $ ./kikusui.py current -t measure
+     $ ./kikusui.py current -t ocp
+   #+end_example
+
+   The command =current= prints a current value set, measured, or set
+   for ocp.  The default value is =setting=.
+
+   The command also takes option =--less-than= with a value.
+   #+begin_example
+     ./kikusui.py current -t measure --less-than 1.0
+   #+end_example
+
+   With this option, the command compares the given value against the
+   acquired value, return exit code =0= when the acquired value is
+   less than the given value, or =1= otherwise.
+
 * Howto
 ** Monitor voltage and current continuously
 
