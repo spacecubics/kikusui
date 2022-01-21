@@ -93,14 +93,22 @@ def voltage(ctx, set):
 @click.pass_context
 @click.option('-t', '--type', 'curr_type', default='setting',
               type=click.Choice(['setting', 'measure', 'ocp']))
-def current(ctx, curr_type):
+@click.option('-lt', '--less-than')
+def current(ctx, curr_type, less_than):
     if curr_type == 'measure':
-        click.echo('%s' % float(ctx.obj['inst'].query('MEAS:CURR?')))
+        value = float(ctx.obj['inst'].query('MEAS:CURR?'))
     elif curr_type == 'ocp':
-        click.echo('%s' % float(ctx.obj['inst'].query('CURR:PROT?')))
+        value = float(ctx.obj['inst'].query('CURR:PROT?'))
     else:
-        click.echo('%s' % float(ctx.obj['inst'].query('CURR?')))
+        value = float(ctx.obj['inst'].query('CURR?'))
 
+    if less_than:
+        if value < float(less_than):
+            ctx.exit(0)
+        else:
+            ctx.exit(1)
+    else:
+        click.echo(value)
 
 @click.command()
 @click.pass_context
