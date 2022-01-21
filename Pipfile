@@ -7,8 +7,3 @@ name = "pypi"
 click = "*"
 pyyaml = "*"
 pyvisa-py = "*"
-
-[dev-packages]
-
-[requires]
-python_version = "3.7"
