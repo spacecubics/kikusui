@@ -26,7 +26,7 @@ class AliasedGroup(click.Group):
 def get_ipaddr_from_config():
     cfg_dirs = [os.getcwd(), click.get_app_dir(APP_NAME)]
     for cfg_dir in cfg_dirs:
-        cfg_file = os.path.join(cfg_dir, 'config.yml')
+        cfg_file = os.path.join(cfg_dir, 'kikusui.yml')
         try:
             with click.open_file(cfg_file, 'r') as stream:
                 try:
@@ -39,7 +39,7 @@ def get_ipaddr_from_config():
             continue
 
     dirs = ' or '.join(cfg_dirs)
-    raise Exception(f'"config.yml" not found in either {dirs}')
+    raise Exception(f'"kikusui.yml" not found in either {dirs}')
 
 
 @click.command(cls=AliasedGroup, context_settings=dict(help_option_names=["-h", "--help"]))

@@ -18,12 +18,15 @@
 
   The application configuration directory is OS dependent.
 
-    - For Linux :: =$XDG_CONFIG_HOME/kikusui/config.yml=.
-    - For Mac OS X :: =~/Library/Application Support/kikusui/config.yml=
-    - For Windows 10 :: =C:\Users\<user>\AppData\Local\kikusui\config.yml=
+    - For Linux :: =$XDG_CONFIG_HOME/kikusui/kikusui.yml=.
+    - For Mac OS X :: =~/Library/Application Support/kikusui/kikusui.yml=
+    - For Windows 10 :: =C:\Users\<user>\AppData\Local\kikusui\kikusui.yml=
+
+  Note: The name of the configuration file has been changed from
+  =config.yml= to =kikusui.yml=.
 
 ** IP Address
-   If you have IP address specified in config.yml, you don't need
+   If you have IP address specified in kikusui.yml, you don't need
    =--ipaddr= option when you invoke the command.
 
    #+begin_src yaml
