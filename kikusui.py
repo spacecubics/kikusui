@@ -67,6 +67,10 @@ def id(ctx):
 @click.command()
 @click.pass_context
 def measure(ctx):
+    """Print current status and measured values.  Voltages and Current
+    are printed with three values: Measured / Set / Protection
+    """
+
     outp = ctx.obj['inst'].query('OUTP?')
     mvolt = float(ctx.obj['inst'].query('MEAS:VOLT?'))
     mcurr = float(ctx.obj['inst'].query('MEAS:CURR?'))
